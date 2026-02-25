@@ -198,23 +198,49 @@
           catCard.classList.add("favourite");
         }
 
-        const favouriteText = cat.favourite
-          ? '<span class="favourite">⭐ Любимец</span>'
-          : "";
+        const img = document.createElement("img");
+        img.src = cat.img_link;
+        img.alt = cat.name;
+        catCard.appendChild(img);
 
-        catCard.innerHTML = `
-                <img src="${cat.img_link}" alt="${cat.name}">
-                <div class="catInfo">
-                    <div class="catName">${cat.name}</div>
-                    <div class="catDetails">
-                        <p>Возраст: ${cat.age} лет</p>
-                        <p>Рейтинг: <span class="catRating">${generateStars(cat.rate)}</span></p>
-                        ${favouriteText}
-                    </div>
-                    <div class="catDescription">${cat.description}</div>
-                </div>
-            `;
+        const catInfo = document.createElement("div");
+        catInfo.className = "catInfo";
 
+        const catName = document.createElement("div");
+        catName.className = "catName";
+        catName.textContent = cat.name;
+        catInfo.appendChild(catName);
+
+        const catDetails = document.createElement("div");
+        catDetails.className = "catDetails";
+
+        const ageParagraph = document.createElement("p");
+        ageParagraph.textContent = `Возраст: ${cat.age} лет`;
+        catDetails.appendChild(ageParagraph);
+
+        const ratingParagraph = document.createElement("p");
+        ratingParagraph.textContent = "Рейтинг: ";
+        const ratingSpan = document.createElement("span");
+        ratingSpan.className = "catRating";
+        ratingSpan.textContent = generateStars(cat.rate);
+        ratingParagraph.appendChild(ratingSpan);
+        catDetails.appendChild(ratingParagraph);
+
+        if (cat.favourite) {
+          const favouriteSpan = document.createElement("span");
+          favouriteSpan.className = "favourite";
+          favouriteSpan.textContent = "⭐ Любимец";
+          catDetails.appendChild(favouriteSpan);
+        }
+
+        catInfo.appendChild(catDetails);
+
+        const catDescription = document.createElement("div");
+        catDescription.className = "catDescription";
+        catDescription.textContent = cat.description;
+        catInfo.appendChild(catDescription);
+
+        catCard.appendChild(catInfo);
         container.appendChild(catCard);
       });
     </script>
