@@ -5,78 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f5f5f5;
-      }
-      h1 {
-        text-align: center;
-        color: #333;
-      }
-      #catsContainer {
+  <body
+    style="font-family: Arial; background: #f5f5f5; padding: 20px; margin: 0"
+  >
+    <h1 style="text-align: center; color: #333">Информация о котах</h1>
+    <div
+      id="catsContainer"
+      style="
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 20px;
         max-width: 1200px;
         margin: 0 auto;
-      }
-      .catCard {
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-      }
-      .catCard:hover {
-        transform: translateY(-5px);
-      }
-      .catCard.favourite {
-        border: 3px solid #ff9800;
-        box-shadow: 0 0 15px rgba(255, 152, 0, 0.4);
-      }
-      .catCard img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
-      }
-      .catInfo {
-        padding: 15px;
-      }
-      .catName {
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
-        margin: 0;
-      }
-      .catDetails {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #666;
-      }
-      .catDescription {
-        margin-top: 10px;
-        font-size: 13px;
-        color: #555;
-        line-height: 1.4;
-      }
-      .catRating {
-        color: #ff9800;
-        font-weight: bold;
-        font-size: 16px;
-        letter-spacing: 2px;
-      }
-      .favourite {
-        color: #e91e63;
-        font-weight: bold;
-      }
-    </style>
-
-    <h1>Информация о котах</h1>
-    <div id="catsContainer"></div>
+      "
+    ></div>
 
     <script>
       const cats = [
@@ -89,7 +31,6 @@
           favourite: false,
           description:
             "Лара – шотландская вислоухая, у нее остеохондродисплазия. Лара спокойная, очень ласковая и контактная. Болезнь не лечится и специального ухода не нужно.",
-          id: 1,
         },
         {
           name: "Базиль",
@@ -100,7 +41,6 @@
           favourite: false,
           description:
             "Внимательный, активный и ласковый. Любит играть, катать мяч, и мурчать на пледе рядом с людьми! Прилично воспитан, приучен к лотку. Вакцинирован, имеет ветеринарный паспорт.",
-          id: 2,
         },
         {
           name: "Риш",
@@ -111,7 +51,6 @@
           favourite: true,
           description:
             "Риш любит лесенки, канаты. Очень активный и дружелюбный кот. Риш полностью здоров, привит, кастрирован. Использует лоточек и очень аккуратен.",
-          id: 3,
         },
         {
           name: "Элли",
@@ -122,7 +61,6 @@
           favourite: false,
           description:
             "Элли обладает мягким и добрым характером. Очень любит всевозможные лакомства и вкусно покушать. Не доверяет людям, потребуется время, чтобы стать ей другом. Приучена к лотку и когтеточке",
-          id: 4,
         },
         {
           name: "Чарли",
@@ -133,7 +71,6 @@
           favourite: false,
           description:
             "Чёрно-белый юный котофилософ очень любит размышлять и быть наедине. Пока что не доверяет людям, не агрессивный. Ладит с другими животными, приучен к лотку и когтеточке",
-          id: 5,
         },
         {
           name: "Стефани",
@@ -144,7 +81,6 @@
           favourite: false,
           description:
             "Прелестная Стефани – трогательная, добродушная и очень-очень общительная девочка как никто другой нуждается в заботе и любви. Приучена к лотку и когтеточке",
-          id: 6,
         },
         {
           name: "Дуся",
@@ -155,7 +91,6 @@
           favourite: false,
           description:
             "Дусеньке около 1 года с небольшим, здорова, привита, стерилизована. Лоточек и когтеточку знает прекрасно. Очень общительная и нежная, хочет постоянного внимания.",
-          id: 7,
         },
         {
           name: "Бруно",
@@ -166,7 +101,6 @@
           favourite: false,
           description:
             "Очаровательный активный кот Бруно, находится в постоянном движении! Очаровательный и ласковый кот. Приучен к лотку, ладит с другими котами, привит.",
-          id: 8,
         },
         {
           name: "Лара",
@@ -177,71 +111,74 @@
           favourite: true,
           description:
             "Немного боязливый, но очень добрый и нежный кот Светлячок. Приучен к лотку и когтеточке, ладит с детьми, привит. Станет вам хорошим другом",
-          id: 9,
         },
       ];
 
-      const container = document.getElementById("catsContainer");
-
-      function generateStars(rating) {
-        let stars = "";
-        for (let i = 0; i < 10; i++) {
-          stars += i < rating ? "★" : "☆";
-        }
-        return stars;
-      }
+      let container = document.getElementById("catsContainer");
 
       cats.forEach((cat) => {
-        const catCard = document.createElement("div");
-        catCard.className = "catCard";
-        if (cat.favourite) {
-          catCard.classList.add("favourite");
-        }
+        let card = document.createElement("div");
+        card.setAttribute(
+          "style",
+          "background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);" +
+            (cat.favourite
+              ? "border: 3px solid orange; box-shadow: 0 0 15px rgba(255, 152, 0, 0.4);"
+              : ""),
+        );
 
-        const img = document.createElement("img");
+        let img = document.createElement("img");
         img.src = cat.img_link;
-        img.alt = cat.name;
-        catCard.appendChild(img);
+        img.setAttribute(
+          "style",
+          "width: 100%; height: 250px; object-fit: cover;",
+        );
+        card.appendChild(img);
 
-        const catInfo = document.createElement("div");
-        catInfo.className = "catInfo";
+        let name = document.createElement("div");
+        name.textContent = cat.name;
+        name.setAttribute(
+          "style",
+          "font-size: 20px; font-weight: bold; padding: 10px 15px 0 15px;",
+        );
+        card.appendChild(name);
 
-        const catName = document.createElement("div");
-        catName.className = "catName";
-        catName.textContent = cat.name;
-        catInfo.appendChild(catName);
+        let age = document.createElement("div");
+        age.textContent = "Возраст: " + cat.age + " лет";
+        age.setAttribute(
+          "style",
+          "font-size: 14px; padding: 5px 15px; color: #666;",
+        );
+        card.appendChild(age);
 
-        const catDetails = document.createElement("div");
-        catDetails.className = "catDetails";
-
-        const ageParagraph = document.createElement("p");
-        ageParagraph.textContent = `Возраст: ${cat.age} лет`;
-        catDetails.appendChild(ageParagraph);
-
-        const ratingParagraph = document.createElement("p");
-        ratingParagraph.textContent = "Рейтинг: ";
-        const ratingSpan = document.createElement("span");
-        ratingSpan.className = "catRating";
-        ratingSpan.textContent = generateStars(cat.rate);
-        ratingParagraph.appendChild(ratingSpan);
-        catDetails.appendChild(ratingParagraph);
+        let rating = document.createElement("div");
+        rating.textContent = "Рейтинг: ";
+        for (let i = 0; i < cat.rate; i++) rating.textContent += "★";
+        for (let i = cat.rate; i < 10; i++) rating.textContent += "☆";
+        rating.setAttribute(
+          "style",
+          "font-size: 14px; padding: 0 15px; color: #666;",
+        );
+        card.appendChild(rating);
 
         if (cat.favourite) {
-          const favouriteSpan = document.createElement("span");
-          favouriteSpan.className = "favourite";
-          favouriteSpan.textContent = "⭐ Любимец";
-          catDetails.appendChild(favouriteSpan);
+          let fav = document.createElement("div");
+          fav.textContent = "⭐ Любимец";
+          fav.setAttribute(
+            "style",
+            "color: #e91e63; font-weight: bold; padding: 0 15px;",
+          );
+          card.appendChild(fav);
         }
 
-        catInfo.appendChild(catDetails);
+        let desc = document.createElement("div");
+        desc.textContent = cat.description;
+        desc.setAttribute(
+          "style",
+          "font-size: 13px; color: #555; padding: 10px 15px 15px 15px; line-height: 1.4;",
+        );
+        card.appendChild(desc);
 
-        const catDescription = document.createElement("div");
-        catDescription.className = "catDescription";
-        catDescription.textContent = cat.description;
-        catInfo.appendChild(catDescription);
-
-        catCard.appendChild(catInfo);
-        container.appendChild(catCard);
+        container.appendChild(card);
       });
     </script>
   </body>
